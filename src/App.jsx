@@ -1,9 +1,13 @@
-import { useState } from "react";
+import Board from "./components/Board";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <div>Hello Tic Tac Toe</div>;
+  const btns = [null, null, null, null, null, null, null, null, null];
+  return (
+    <div className="app">
+      <Board bord={btns} />
+    </div>
+  );
 }
 
 export default App;
