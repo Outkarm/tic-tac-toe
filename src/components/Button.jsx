@@ -1,15 +1,19 @@
-import { useState } from "react";
 import "../assets/style/button.css";
-function Button({ value, id }) {
-  const [players, setPlayers] = useState({
-    p1: { name: "Player 1", value: "x", score: 0 },
-    p2: { name: "Player 2", value: "x", score: 0 },
-  });
+import { played } from "../redux/reducer/gameReducer";
+import { useSelector, useDispatch } from "react-redux";
 
-  const style = value === "x" ? "game-btn x" : "game-btn o";
+function Button({ value, id }) {
+  // const game = useSelector((state) => state.game);
+  const dispatch = useDispatch();
+
+  const handlePlayed = () => {
+    dispatch(played(id));
+  };
+
+  const style = value === "X" ? "game-btn x" : "game-btn o";
 
   return (
-    <button className={style} id={id}>
+    <button className={style} id={id} onClick={handlePlayed}>
       {value}
     </button>
   );
