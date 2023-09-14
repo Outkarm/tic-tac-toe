@@ -3,9 +3,12 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { won, reSetGame } from "./redux/reducer/gameReducer";
 import { useEffect } from "react";
+import ScoreBoard from "./components/Scoreboard";
+import ReSetBtn from "./components/reSetBtn";
 
 function App() {
   const game = useSelector((state) => state.game);
+  console.log(game);
   const btns = game.gameBoard;
   const dispatch = useDispatch();
   let winningPlayer;
@@ -35,6 +38,11 @@ function App() {
       }
     }
   };
+  if (btns.includes(null) === false) {
+    winningPlayer = "draw";
+    dispatch(reSetGame());
+  }
+
   useEffect(() => {
     // Use the game object from useSelector here
     console.log(game);
@@ -43,7 +51,9 @@ function App() {
 
   return (
     <div className="app">
+      <ScoreBoard />
       <Board bord={btns} />
+      <ReSetBtn />
     </div>
   );
 }

@@ -38,6 +38,7 @@ const initialState = {
   win: false,
   currentPlayer: "p1",
 };
+
 function gameReducer(state = initialState, action) {
   switch (action.type) {
     case NEW_GAME:
@@ -87,6 +88,7 @@ function gameReducer(state = initialState, action) {
         ...state,
         gameBoard: [null, null, null, null, null, null, null, null, null],
         [winningPlayer]: updatedScore,
+        currentPlayer: "p1",
         win: true,
       };
 
