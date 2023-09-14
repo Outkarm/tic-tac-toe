@@ -1,9 +1,8 @@
 import "../assets/style/button.css";
 import { played } from "../redux/reducer/gameReducer";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Button({ value, id }) {
-  // const game = useSelector((state) => state.game);
   const dispatch = useDispatch();
 
   const handlePlayed = () => {

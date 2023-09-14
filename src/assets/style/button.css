@@ -24,3 +24,23 @@
 .game-btn:hover {
   box-shadow: 0px 0px 10px #888;
 }
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 8px #888;
+  color: #f7f7f9;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 20rem;
+}
+
+.new-game {
+  background-color: #ff47da;
+}
+
+.reset {
+  background-color: #1b065e;
+}
