@@ -1,0 +1,91 @@
+.welcome-page {
+  height: 100%;
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Fredoka", sans-serif;
+  font-weight: bold;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 10%;
+  background-color: #efefef;
+}
+
+.w-title {
+  color: #1b065e;
+}
+
+.user-settings {
+  box-shadow: 0 0 4px #888;
+  border-radius: 3%;
+  padding: 5%;
+  background-color: #ff47da;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.players {
+  color: ;
+  font-size: 2.5rem;
+  background-color: #ff47da;
+  color: #6d435a;
+}
+
+.p-info-sec {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  background-color: #ff47da;
+}
+
+.player1 {
+  border-radius: 5px;
+  padding: 1%;
+  border: none;
+  box-shadow: 0 0 8px #888;
+  height: 50px;
+  color: red;
+  font-size: 1.5rem;
+  max-width: 50%;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.player2 {
+  border-radius: 5px;
+  padding: 1%;
+  border: none;
+  box-shadow: 0 0 8px #888;
+  height: 50px;
+  color: blue;
+  font-size: 1.5rem;
+  max-width: 50%;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.scrolly-sec {
+  background-color: #ff47da;
+}
+
+.selected-score-limit {
+  background-color: #ff47da;
+  color: #f5eccd;
+  font-family: cursive;
+}
+
+.start {
+  background-color: #41e2ba;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 8px #888;
+  color: #f7f7f9;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
