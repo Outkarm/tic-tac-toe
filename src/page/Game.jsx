@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { won, resetGame } from "../redux/reducer/gameReducer";
-import ScoreBoard from "../components/ScoreBoard";
+import ScoreBoard from "../components/Scoreboard";
 import Board from "../components/Board";
 import ReSetBtn from "../components/ReSetBtn";
 import NewGameBtn from "../components/NewGameBtn";
