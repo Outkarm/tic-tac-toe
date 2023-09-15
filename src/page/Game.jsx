@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { won, reSetGame } from "../redux/reducer/gameReducer";
+import { won, resetGame } from "../redux/reducer/gameReducer";
 import ScoreBoard from "../components/Scoreboard";
 import Board from "../components/Board";
 import ReSetBtn from "../components/ReSetBtn";
@@ -10,10 +10,9 @@ import "../assets/style/game.css";
 
 const Game = () => {
   const game = useSelector((state) => state.game);
-  const btns = game.gameBoard;
+  const gameBoard = game.gameBoard;
   const dispatch = useDispatch();
-  let winningPlayer;
-  let gameWon = false;
+
   const winningConditions = [
     [0, 1, 2],
     [3, 4, 5],
@@ -25,49 +24,48 @@ const Game = () => {
     [2, 4, 6],
   ];
 
-  const checkWinner = (btns) => {
+  useEffect(() => {
+    checkWinner(gameBoard);
+  }, [gameBoard, dispatch]);
+
+  const checkWinner = (gameBoard) => {
+    let winningPlayer = null;
+
     for (let i = 0; i < winningConditions.length; i++) {
       const [x, y, z] = winningConditions[i];
-      if (btns[x] && btns[x] === btns[y] && btns[y] === btns[z]) {
-        if (btns[x] === game["p1"].value) {
-          winningPlayer = "p1";
-        } else {
-          winningPlayer = "p2";
-        }
-        setTimeout(() => {
-          dispatch(won(winningPlayer));
-        }, 200);
+      if (
+        gameBoard[x] &&
+        gameBoard[x] === gameBoard[y] &&
+        gameBoard[y] === gameBoard[z]
+      ) {
+        winningPlayer = gameBoard[x] === game["p1"].value ? "p1" : "p2";
+        break;
       }
     }
-    if (btns.includes(null) === false) {
+
+    if (!winningPlayer && !gameBoard.includes(null)) {
       winningPlayer = "draw";
-      setShowWinner(true);
       setTimeout(() => {
-        dispatch(reSetGame());
-        setShowWinner(false);
+        dispatch(resetGame());
+      }, 100);
+    }
+
+    if (winningPlayer) {
+      setTimeout(() => {
+        dispatch(won(winningPlayer));
       }, 200);
     }
   };
-  if (game["p1"].score === game.scoreLimit && game.scoreLimit !== "Unlimited") {
-    gameWon = true;
-  } else if (
-    game["p2"].score === game.scoreLimit &&
-    game.scoreLimit !== "Unlimited"
-  ) {
-    gameWon = true;
-  } else {
-    gameWon = false;
-  }
 
-  useEffect(() => {
-    checkWinner(btns);
-  }, [btns, game, dispatch]);
+  const isGameWon =
+    (game["p1"].score === game.scoreLimit && game.scoreLimit !== "Unlimited") ||
+    (game["p2"].score === game.scoreLimit && game.scoreLimit !== "Unlimited");
 
   return (
     <>
-      <div className={`game ${gameWon ? "blurred" : ""}`}>
+      <div className={`game ${isGameWon ? "blurred" : ""}`}>
         <ScoreBoard />
-        <Board bord={btns} />
+        <Board bord={gameBoard} />
         <ReSetBtn />
         <NewGameBtn />
       </div>

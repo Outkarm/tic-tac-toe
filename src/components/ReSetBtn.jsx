@@ -1,13 +1,16 @@
 import "../assets/style/button.css";
 import { useDispatch } from "react-redux";
-import { reSetGame } from "../redux/reducer/gameReducer";
+import { resetGame } from "../redux/reducer/gameReducer";
+
 function ReSetBtn() {
   const dispatch = useDispatch();
-  const hundleReset = () => {
-    dispatch(reSetGame());
+
+  const handleReset = () => {
+    dispatch(resetGame());
   };
+
   return (
-    <button className="btn reset" onClick={hundleReset}>
+    <button className="btn reset" onClick={handleReset}>
       Reset
     </button>
   );

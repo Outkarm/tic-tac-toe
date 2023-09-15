@@ -1,0 +1,45 @@
+.winner-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  text-align: center;
+  font-family: cursive;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 350px;
+  transform: scale(0);
+}
+
+.yeyyy {
+  transform: scale(1);
+  transition: transform 0.3s ease-in;
+}
+
+.blurred {
+  filter: blur(5px);
+}
+
+.congratulations {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.winner-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.winner-img {
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}

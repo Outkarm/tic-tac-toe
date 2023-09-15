@@ -1,6 +1,6 @@
-import "../assets/style/button.css";
-import { played } from "../redux/reducer/gameReducer";
 import { useDispatch } from "react-redux";
+import { played } from "../redux/reducer/gameReducer";
+import "../assets/style/button.css";
 
 function Button({ value, id }) {
   const dispatch = useDispatch();

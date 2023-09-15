@@ -1,23 +1,19 @@
 // actions.js
-export const NEW_GAME = "GO_TO_GAME_SETTINGS";
+export const NEW_GAME = "NEW_GAME";
 export const START_GAME = "START_GAME";
 export const RESET_GAME = "RESET_GAME";
 export const PLAYED = "PLAYED";
-export const WON = "A_PLAYER_WON";
+export const WON = "WON";
 
-//action creators
-export const newGame = () => ({
-  type: NEW_GAME,
-});
+// action creators
+export const newGame = () => ({ type: NEW_GAME });
 
 export const startGame = (p1Name, p2Name, scoreLimit) => ({
   type: START_GAME,
   payload: { p1Name, p2Name, scoreLimit },
 });
 
-export const reSetGame = () => ({
-  type: RESET_GAME,
-});
+export const resetGame = () => ({ type: RESET_GAME });
 
 export const played = (index) => ({
   type: PLAYED,
@@ -31,7 +27,7 @@ export const won = (winningPlayer) => ({
 
 // reducer.js
 const initialState = {
-  gameBoard: [null, null, null, null, null, null, null, null, null],
+  gameBoard: Array(9).fill(null),
   p1: { name: "Player 1", value: "X", score: 0 },
   p2: { name: "Player 2", value: "O", score: 0 },
   scoreLimit: "Unlimited",
@@ -45,11 +41,12 @@ function gameReducer(state = initialState, action) {
       return { ...initialState };
 
     case START_GAME:
+      const { p1Name, p2Name, scoreLimit } = action.payload;
       return {
         ...state,
-        p1: { ...state.p1, name: action.payload.p1Name },
-        p2: { ...state.p2, name: action.payload.p2Name },
-        scoreLimit: action.payload.scoreLimit,
+        p1: { ...state.p1, name: p1Name, score: 0 },
+        p2: { ...state.p2, name: p2Name, score: 0 },
+        scoreLimit,
       };
 
     case RESET_GAME:
@@ -62,19 +59,17 @@ function gameReducer(state = initialState, action) {
 
     case PLAYED:
       const { index } = action.payload;
-      const updatedGameBoard = [...state.gameBoard];
-      if (updatedGameBoard[index] === null) {
+      if (state.gameBoard[index] === null) {
+        const updatedGameBoard = [...state.gameBoard];
         updatedGameBoard[index] = state[state.currentPlayer].value;
         const nextPlayer = state.currentPlayer === "p1" ? "p2" : "p1";
-
         return {
           ...state,
           gameBoard: updatedGameBoard,
           currentPlayer: nextPlayer,
         };
-      } else {
-        return state;
       }
+      return state;
 
     case WON:
       const winningPlayer = action.payload;
@@ -82,11 +77,9 @@ function gameReducer(state = initialState, action) {
         ...state[winningPlayer],
         score: state[winningPlayer].score + 1,
       };
-      console.log(updatedScore);
-
       return {
         ...state,
-        gameBoard: [null, null, null, null, null, null, null, null, null],
+        gameBoard: Array(9).fill(null),
         [winningPlayer]: updatedScore,
         currentPlayer: "p1",
         win: true,
