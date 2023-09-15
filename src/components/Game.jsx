@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { won, resetGame } from "../redux/reducer/gameReducer";
-import ScoreBoard from "../components/ScoreBoard";
-import Board from "../components/Board";
-import ReSetBtn from "../components/ReSetBtn";
-import NewGameBtn from "../components/NewGameBtn";
-import DeclareWinner from "../components/DeclareWinner";
+import ScoreBoard from "./ScoreBoard";
+import Board from "./Board";
+import ReSetBtn from "./ReSetBtn";
+import NewGameBtn from "./NewGameBtn";
+import DeclareWinner from "./DeclareWinner";
 import "../assets/style/game.css";
 
 const Game = () => {
